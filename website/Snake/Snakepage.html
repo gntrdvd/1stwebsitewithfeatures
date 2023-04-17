@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Snake</title>
-</head>
+    </head>
 <body>
-    
-    <canvas id="canvas" width="480" height="480"></canvas>
 
+    <canvas id="canvas" width="480" height="480"></canvas>
+    <style>
+        .canvas{
+            touch-action: none;
+        }
+    </style>
+    
     <script>
         let canvas = document.getElementById("canvas");
         let ctx = canvas.getContext("2d");
@@ -94,19 +99,6 @@
             foodEaten = false;
         }
         
-        if(direction == "LEFT"){
-            snake[0].w--; //w Attribut index 0 from snake einfach abgezogen
-        }
-        if(direction == "RIGHT"){
-            snake[0].w++; 
-        }
-        if(direction == "UP"){
-            snake[0].h--; 
-        }
-        if(direction == "DOWN"){
-            snake[0].h++; 
-        }
-       
         if(direction == "LEFT"){
             snake[0].w--; //w Attribut index 0 from snake einfach abgezogen
         }
