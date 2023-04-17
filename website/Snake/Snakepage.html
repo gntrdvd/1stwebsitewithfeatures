@@ -106,6 +106,20 @@
         if(direction == "DOWN"){
             snake[0].h++; 
         }
+       
+        if(direction == "LEFT"){
+            snake[0].w--; //w Attribut index 0 from snake einfach abgezogen
+        }
+        if(direction == "RIGHT"){
+            snake[0].w++; 
+        }
+        if(direction == "UP"){
+            snake[0].h--; 
+        }
+        if(direction == "DOWN"){
+            snake[0].h++; 
+        }
+
         if(snake[0].w == food.w && snake[0].h == food.h){
             spawnFood();
             foodEaten = true;
@@ -113,20 +127,34 @@
 
         }
 
+        let touchstartX = 0
+        let touchendX = 0
+        let touchstartY = 0
+        let touchendY = 0
+
         function keyDown(e) {
-            if (e.keyCode == 37) {
+            if (e.keyCode == 37 || touchendX < touchstartX) {
                 direction = "LEFT";
             }
-            if (e.keyCode == 38) {
+            if (e.keyCode == 38 || touchendY > touchstartY) {
                 direction = "UP";
             }
-            if (e.keyCode == 39) {
+            if (e.keyCode == 39 || touchendX > touchstartX) {
                 direction = "RIGHT";
             }
-            if (e.keyCode == 40) {
+            if (e.keyCode == 40 || touchendY < touchstartY) {
                 direction = "DOWN";
             }
         }
+
+        document.addEventListener('touchstart', e => {
+        touchstartX = e.changedTouches[0].screenX
+        })
+
+        document.addEventListener('touchend', e => {
+        touchendX = e.changedTouches[0].screenX
+        checkDirection()
+        })
 
     </script>
 

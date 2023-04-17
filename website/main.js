@@ -71,9 +71,34 @@ function undraw() {
 }
 
 //timerId = setInterval(moveDown, 1000)
+let touchstartX = 0
+let touchendX = 0
+let touchstartY = 0
+let touchendY = 0
+    
+function checkDirection() {
+  if (touchendX < touchstartX){
+    moveLeft()
+  }else if(touchendX > touchstartX){
+    moveRight()
+  }else if (touchendY > touchstartY){
+    rotate()
+  }else if (touchendY < touchstartY){
+    moveDown()
+  }
+}
+
+document.addEventListener('touchstart', e => {
+  touchstartX = e.changedTouches[0].screenX
+})
+
+document.addEventListener('touchend', e => {
+  touchendX = e.changedTouches[0].screenX
+  checkDirection()
+})
 
 function control(e) {
-    if(e.keyCode === 37) {
+    if(e.keyCode === 37)  {
         moveLeft()
     } else if (e.keyCode === 38){
         rotate()
